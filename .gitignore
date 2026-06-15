@@ -1,0 +1,20 @@
+# Data — not committed (too large / confidential)
+train/
+test/
+*.parquet
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+
+# Internal tooling
+CLAUDE.md
+create_notebooks.py

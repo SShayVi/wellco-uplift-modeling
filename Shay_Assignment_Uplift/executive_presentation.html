@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WellCo Uplift Modeling — Executive Presentation</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #1a1a2e; color: #eee; }
+
+  .slides { width: 100%; }
+  .slide {
+    min-height: 100vh;
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 3px solid #0f3460;
+    position: relative;
+  }
+  .slide:nth-child(odd)  { background: #16213e; }
+  .slide:nth-child(even) { background: #0f3460; }
+
+  .slide-number {
+    position: absolute; top: 20px; right: 30px;
+    font-size: 13px; color: #888; letter-spacing: 2px;
+  }
+
+  h1 { font-size: 2.8em; font-weight: 700; color: #e94560; margin-bottom: 12px; line-height: 1.2; }
+  h2 { font-size: 2em; font-weight: 700; color: #e94560; margin-bottom: 20px; }
+  h3 { font-size: 1.2em; font-weight: 600; color: #00b4d8; margin-bottom: 10px; }
+  p, li { font-size: 1.05em; line-height: 1.7; color: #ccc; }
+  ul { padding-left: 24px; }
+  li { margin-bottom: 8px; }
+  strong { color: #fff; }
+
+  .subtitle { font-size: 1.3em; color: #aaa; margin-bottom: 8px; }
+  .author   { font-size: 1em; color: #888; margin-top: 20px; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 20px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; margin-top: 20px; }
+
+  .card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    padding: 24px;
+    border-left: 4px solid #e94560;
+  }
+  .card.blue  { border-left-color: #00b4d8; }
+  .card.green { border-left-color: #06d6a0; }
+
+  .big-number {
+    font-size: 3.5em; font-weight: 800; color: #e94560;
+    line-height: 1; margin-bottom: 6px;
+  }
+  .big-number.blue  { color: #00b4d8; }
+  .big-number.green { color: #06d6a0; }
+
+  .table-wrap { margin-top: 20px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.95em; }
+  th { background: #e94560; color: white; padding: 12px 16px; text-align: left; }
+  td { padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.04); }
+
+  .arrow-flow {
+    display: flex; align-items: center; gap: 16px;
+    margin: 20px 0; flex-wrap: wrap;
+  }
+  .arrow-box {
+    background: rgba(233,69,96,0.15);
+    border: 1px solid #e94560;
+    border-radius: 8px;
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 0.9em;
+    flex: 1; min-width: 120px;
+  }
+  .arrow { font-size: 1.6em; color: #e94560; flex-shrink: 0; }
+
+  .callout {
+    background: rgba(6,214,160,0.1);
+    border: 1px solid #06d6a0;
+    border-radius: 8px;
+    padding: 20px 28px;
+    margin-top: 24px;
+    font-size: 1.05em;
+    color: #b2f5e0;
+  }
+
+  .tag {
+    display: inline-block;
+    background: #e94560;
+    color: white;
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 0.8em;
+    font-weight: 700;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  .progress-bar-wrap { margin: 10px 0 4px 0; }
+  .progress-label { font-size: 0.9em; color: #aaa; margin-bottom: 4px; }
+  .progress-bar {
+    height: 10px; background: rgba(255,255,255,0.1); border-radius: 5px; overflow: hidden;
+  }
+  .progress-fill { height: 100%; border-radius: 5px; background: #e94560; }
+  .progress-fill.blue  { background: #00b4d8; }
+  .progress-fill.green { background: #06d6a0; }
+</style>
+</head>
+<body>
+<div class="slides">
+
+<!-- ── SLIDE 1: TITLE ──────────────────────────────────────────── -->
+<div class="slide">
+  <div class="slide-number">1 / 5</div>
+  <p class="subtitle">WellCo Member Engagement</p>
+  <h1>Smarter Outreach:<br>Targeting Who Benefits Most</h1>
+  <p style="margin-top:24px; font-size:1.15em; color:#aaa; max-width:680px;">
+    A causal machine learning model that identifies which members are most likely
+    to <strong>respond positively</strong> to outreach — not just which members
+    are at highest risk of churning.
+  </p>
+  <p class="author">Shay Shavit · Data Science · June 2026</p>
+</div>
+
+<!-- ── SLIDE 2: THE PROBLEM ───────────────────────────────────── -->
+<div class="slide">
+  <div class="slide-number">2 / 5</div>
+  <h2>The Problem with Churn-First Targeting</h2>
+  <div class="two-col" style="margin-top:28px;">
+    <div class="card">
+      <h3>Traditional Approach</h3>
+      <p style="font-size:1.1em; margin-bottom:14px;"><strong>Rank members by P(churn)</strong></p>
+      <ul>
+        <li>Finds the highest-risk members</li>
+        <li>Some of those will churn <em>regardless</em> of outreach ("lost causes")</li>
+        <li>Others would have stayed anyway ("sure things")</li>
+        <li>Wastes budget; may cause over-contact fatigue</li>
+      </ul>
+    </div>
+    <div class="card blue">
+      <h3>Uplift Approach</h3>
+      <p style="font-size:1.1em; margin-bottom:14px;"><strong>Rank by ITE = P(churn|no outreach) − P(churn|outreach)</strong></p>
+      <ul>
+        <li>Finds members whose behaviour <em>changes</em> because of outreach</li>
+        <li>Skips lost causes <em>and</em> sure things</li>
+        <li>Concentrates budget on "persuadables"</li>
+        <li>Maximises retention per outreach dollar</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout">
+    <strong>Key insight:</strong> Outreach is expensive. The goal is not to predict who churns —
+    it's to predict who churns <em>because we didn't reach out</em>.
+  </div>
+</div>
+
+<!-- ── SLIDE 3: THE MODEL ─────────────────────────────────────── -->
+<div class="slide">
+  <div class="slide-number">3 / 5</div>
+  <h2>How It Works</h2>
+  <div class="arrow-flow">
+    <div class="arrow-box">
+      <strong>Behavioral data</strong><br>
+      <span style="color:#aaa; font-size:0.85em;">web visits, app sessions,<br>claims, tenure</span>
+    </div>
+    <span class="arrow">→</span>
+    <div class="arrow-box">
+      <strong>Propensity model</strong><br>
+      <span style="color:#aaa; font-size:0.85em;">Who gets outreach?<br>Correct for bias</span>
+    </div>
+    <span class="arrow">→</span>
+    <div class="arrow-box">
+      <strong>Uplift model</strong><br>
+      <span style="color:#aaa; font-size:0.85em;">T-Learner + X-Learner<br>TabPFN & TabICL</span>
+    </div>
+    <span class="arrow">→</span>
+    <div class="arrow-box" style="border-color:#06d6a0; background:rgba(6,214,160,0.1);">
+      <strong>ITE score</strong><br>
+      <span style="color:#aaa; font-size:0.85em;">Rank every member<br>by estimated benefit</span>
+    </div>
+  </div>
+
+  <div class="three-col" style="margin-top:24px;">
+    <div class="card">
+      <h3>Why confounding matters</h3>
+      <p>Outreach was <strong>not random</strong> — it was targeted at predicted high-risk members.
+      A naive comparison would understate the true effect. We use propensity weighting to
+      reconstruct a "fair" comparison.</p>
+    </div>
+    <div class="card blue">
+      <h3>TabPFN + TabICL</h3>
+      <p>State-of-the-art in-context learners for tabular data. No gradient descent at inference —
+      they "read" the training data directly. Strong on small-to-medium datasets with mixed feature types.</p>
+    </div>
+    <div class="card green">
+      <h3>Ensemble of 4 variants</h3>
+      <p>Two meta-learners (T-Learner, X-Learner) × two base models (TabPFN, TabICL) = 4 ITE
+      estimates averaged. Reduces variance and model-specific bias.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── SLIDE 4: RESULTS ───────────────────────────────────────── -->
+<div class="slide">
+  <div class="slide-number">4 / 5</div>
+  <h2>Results</h2>
+  <div class="three-col">
+    <div style="text-align:center;">
+      <div class="big-number">2,038</div>
+      <p style="color:#aaa;">members recommended<br>out of 10,000 test</p>
+    </div>
+    <div style="text-align:center;">
+      <div class="big-number blue">14.5 pp</div>
+      <p style="color:#aaa;">estimated churn reduction<br>for the top member</p>
+    </div>
+    <div style="text-align:center;">
+      <div class="big-number green">20.4%</div>
+      <p style="color:#aaa;">of members have positive<br>estimated ITE (persuadable)</p>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top:30px;">
+    <div>
+      <h3>Who are the persuadables?</h3>
+      <p style="margin-bottom:12px; color:#aaa;">Top-20% ITE members compared to bottom-20%:</p>
+      <div class="progress-bar-wrap">
+        <div class="progress-label">Higher app engagement</div>
+        <div class="progress-bar"><div class="progress-fill blue" style="width:72%"></div></div>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-label">More WellCo web visits</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-label">Higher health content ratio</div>
+        <div class="progress-bar"><div class="progress-fill green" style="width:58%"></div></div>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-label">Moderate tenure (not too new, not too old)</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:50%"></div></div>
+      </div>
+    </div>
+    <div>
+      <h3>Three member types</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Type</th><th>ITE</th><th>Action</th></tr>
+          <tr><td><strong>Persuadable</strong></td><td style="color:#06d6a0;">High &gt; 0</td><td>Outreach ✓</td></tr>
+          <tr><td><strong>Sure thing</strong></td><td style="color:#aaa;">≈ 0, low risk</td><td>Skip — stays anyway</td></tr>
+          <tr><td><strong>Lost cause</strong></td><td style="color:#aaa;">≈ 0, high risk</td><td>Skip — won't respond</td></tr>
+        </table>
+      </div>
+      <p style="margin-top:14px; color:#aaa; font-size:0.9em;">
+        Targeting lost causes wastes outreach spend. Targeting sure things
+        looks good on paper but adds no incremental retention.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ── SLIDE 5: RECOMMENDATIONS ──────────────────────────────── -->
+<div class="slide">
+  <div class="slide-number">5 / 5</div>
+  <h2>Recommendations &amp; Next Steps</h2>
+  <div class="two-col">
+    <div>
+      <h3>Immediate actions</h3>
+      <ul style="margin-top:8px;">
+        <li>Target the <strong>2,038 recommended members</strong> in the next outreach cycle
+            — ranked by ITE score (<code>predictions.csv</code>)</li>
+        <li>Prioritise the top ~500 members (ITE &gt; 0.10) where confidence is highest</li>
+        <li>Compare realised churn rates of targeted vs untargeted members in 14 days
+            to validate the model</li>
+      </ul>
+
+      <h3 style="margin-top:24px;">Model limitations to keep in mind</h3>
+      <ul style="margin-top:8px;">
+        <li>ITE estimates rely on <strong>conditional ignorability</strong> — we assume the
+            14 features capture all relevant confounding. Unmeasured factors (income, geography,
+            health literacy) could bias estimates.</li>
+        <li>The model cannot distinguish <em>type</em> of outreach — future experiments
+            should test message variants separately.</li>
+        <li>ITE precision is lower at the high-risk tail (few control-group examples there).</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Longer-term roadmap</h3>
+      <ul style="margin-top:8px;">
+        <li><strong>Randomised experiment</strong> — even a small holdout (5–10% random assignment)
+            will yield ground-truth ITE estimates for model recalibration</li>
+        <li><strong>Continuous retraining</strong> — retrain monthly as new behavioral data accumulates</li>
+        <li><strong>Cost-benefit optimisation</strong> — once outreach cost per member is known,
+            the ITE threshold can be set to maximise ROI rather than defaulting to ITE &gt; 0</li>
+        <li><strong>Heterogeneous messaging</strong> — members with high ITE on diabetes content
+            vs sleep content may respond to different outreach types</li>
+      </ul>
+      <div class="callout" style="margin-top:20px;">
+        <strong>Bottom line:</strong> Focus outreach on the 2,038 persuadable members.
+        Expected impact: meaningful incremental retention improvement at the same — or lower — outreach budget.
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /slides -->
+</body>
+</html>
